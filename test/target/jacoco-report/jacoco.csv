@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+TestJanuary,task1.utils,ObjectMapperHolder,0,82,0,0,0,16,0,4,0,4
+TestJanuary,task2.services,TripCostsCalculator,5,58,2,4,1,9,2,3,0,2
+TestJanuary,task1.serializers,ShapeDeserializer,32,38,4,2,7,9,3,2,0,2
+TestJanuary,task1.serializers,ShapeSerializer,34,45,3,3,8,12,3,2,0,2
+TestJanuary,task1.services,ShapeService.new TypeReference() {...},0,6,0,0,0,1,0,1,0,1
+TestJanuary,task1.services,ShapeService,10,82,1,1,5,23,1,8,0,8
+TestJanuary,task1.services,ShapeFactory,22,105,5,9,4,24,5,7,0,5

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShapeSerializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestJanuary</a> &gt; <a href="index.source.html" class="el_package">task1.serializers</a> &gt; <span class="el_source">ShapeSerializer.java</span></div><h1>ShapeSerializer.java</h1><pre class="source lang-java linenums">package task1.serializers;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import task1.model.Circle;
+import task1.model.Rectangle;
+import task1.model.Shape;
+import task1.model.Square;
+
+import java.io.IOException;
+
+public class ShapeSerializer extends StdSerializer&lt;Shape&gt; {
+
+    public ShapeSerializer(Class&lt;Shape&gt; t) {
+<span class="fc" id="L17">        super(t);</span>
+<span class="fc" id="L18">    }</span>
+
+    @Override
+    public void serialize(Shape shape, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+
+<span class="fc" id="L23">        String type = shape.getClass().getSimpleName();</span>
+
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">        if (type.equalsIgnoreCase(&quot;rectangle&quot;)) {</span>
+<span class="fc" id="L26">            jsonGenerator.writeStartObject();</span>
+<span class="fc" id="L27">            jsonGenerator.writeObjectField(&quot;type&quot;, shape.getClass().getSimpleName());</span>
+<span class="fc" id="L28">            jsonGenerator.writeObjectField(&quot;length&quot;, ((Rectangle) shape).getLength());</span>
+<span class="fc" id="L29">            jsonGenerator.writeObjectField(&quot;width&quot;, ((Rectangle) shape).getWidth());</span>
+<span class="fc" id="L30">            jsonGenerator.writeEndObject();</span>
+        }
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (type.equalsIgnoreCase(&quot;square&quot;)) {</span>
+<span class="nc" id="L33">            jsonGenerator.writeStartObject();</span>
+<span class="nc" id="L34">            jsonGenerator.writeObjectField(&quot;type&quot;, shape.getClass().getSimpleName());</span>
+<span class="nc" id="L35">            jsonGenerator.writeObjectField(&quot;length&quot;, ((Square) shape).getLength());</span>
+<span class="nc" id="L36">            jsonGenerator.writeEndObject();</span>
+        }
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (type.equalsIgnoreCase(&quot;circle&quot;)) {</span>
+<span class="nc" id="L39">            jsonGenerator.writeStartObject();</span>
+<span class="nc" id="L40">            jsonGenerator.writeObjectField(&quot;type&quot;, shape.getClass().getSimpleName());</span>
+<span class="nc" id="L41">            jsonGenerator.writeObjectField(&quot;radius&quot;, ((Circle) shape).getRadius());</span>
+<span class="nc" id="L42">            jsonGenerator.writeEndObject();</span>
+        }
+<span class="fc" id="L44">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

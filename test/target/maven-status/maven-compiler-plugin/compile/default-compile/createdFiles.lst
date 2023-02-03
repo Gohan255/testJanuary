@@ -1,0 +1,16 @@
+task1/serializers/ShapeSerializer.class
+task1/model/Circle.class
+task1/services/ShapeService.class
+task1/utils/ObjectMapperHolder.class
+task2/Main.class
+task1/interfaces/IShape.class
+task1/model/Square.class
+task1/model/Rectangle.class
+task1/services/ShapeFactory.class
+task2/interfaces/LotTicketService.class
+task1/exceptions/InvalidInputException.class
+task2/services/TripCostsCalculator.class
+task1/Main.class
+task1/serializers/ShapeDeserializer.class
+task1/model/Shape.class
+task1/services/ShapeService$1.class

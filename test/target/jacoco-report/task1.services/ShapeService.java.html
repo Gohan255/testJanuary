@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShapeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestJanuary</a> &gt; <a href="index.source.html" class="el_package">task1.services</a> &gt; <span class="el_source">ShapeService.java</span></div><h1>ShapeService.java</h1><pre class="source lang-java linenums">package task1.services;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import task1.model.Shape;
+import task1.utils.ObjectMapperHolder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
+<span class="fc" id="L13">public class ShapeService {</span>
+
+<span class="fc" id="L15">    ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getMapper();</span>
+
+    public Shape findShapeWithLargestArea(List&lt;Shape&gt; shapes) {
+<span class="fc" id="L18">        return Optional.ofNullable(shapes)</span>
+<span class="fc" id="L19">                .orElseGet(Collections::emptyList)</span>
+<span class="fc" id="L20">                .stream()</span>
+<span class="fc" id="L21">                .filter(Objects::nonNull)</span>
+<span class="fc" id="L22">                .max(Comparator.comparing(shape -&gt; shape.calculateArea()))</span>
+<span class="fc" id="L23">                .orElseThrow();</span>
+    }
+
+    public Shape findShapeWithLargestPerimeter(List&lt;Shape&gt; shapes, String type) {
+<span class="fc" id="L27">        return Optional.ofNullable(shapes)</span>
+<span class="fc" id="L28">                .orElseGet(Collections::emptyList)</span>
+<span class="fc" id="L29">                .stream()</span>
+<span class="fc" id="L30">                .filter(Objects::nonNull)</span>
+<span class="fc" id="L31">                .filter(shape -&gt; shape.getClass().getSimpleName().equalsIgnoreCase(type))</span>
+<span class="fc" id="L32">                .max(Comparator.comparing(shape -&gt; shape.calculatePerimeter()))</span>
+<span class="fc" id="L33">                .orElseThrow();</span>
+    }
+
+    public void exportShapesToJson(List&lt;Shape&gt; shapes, String path) {
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (shapes == null) {</span>
+<span class="nc" id="L38">            throw new IllegalArgumentException();</span>
+        }
+        try {
+<span class="fc" id="L41">            objectMapper.writeValue(new File(path), shapes);</span>
+<span class="nc" id="L42">        } catch (IOException e) {</span>
+<span class="nc" id="L43">            e.printStackTrace();</span>
+<span class="fc" id="L44">        }</span>
+
+<span class="fc" id="L46">    }</span>
+
+    public List&lt;Shape&gt; importShapesFromJson(String path) {
+<span class="fc" id="L49">        List&lt;Shape&gt; shapes = null;</span>
+        try {
+<span class="fc" id="L51">            shapes = objectMapper.readValue(new File(path), new TypeReference&lt;List&lt;Shape&gt;&gt;() {</span>
+            });
+<span class="nc" id="L53">        } catch (IOException e) {</span>
+<span class="nc" id="L54">            e.printStackTrace();</span>
+<span class="fc" id="L55">        }</span>
+<span class="fc" id="L56">        return shapes;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

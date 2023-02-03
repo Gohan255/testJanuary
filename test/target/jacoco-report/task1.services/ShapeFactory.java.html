@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShapeFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestJanuary</a> &gt; <a href="index.source.html" class="el_package">task1.services</a> &gt; <span class="el_source">ShapeFactory.java</span></div><h1>ShapeFactory.java</h1><pre class="source lang-java linenums">package task1.services;
+
+import task1.exceptions.InvalidInputException;
+import task1.model.Circle;
+import task1.model.Rectangle;
+import task1.model.Shape;
+import task1.model.Square;
+
+import java.util.HashMap;
+import java.util.Map;
+
+<span class="fc" id="L12">public class ShapeFactory {</span>
+
+<span class="fc" id="L14">    private final Map&lt;String, Shape&gt; cache = new HashMap&lt;&gt;();</span>
+
+    public Square createSquare(double length) {
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L18">            throw new InvalidInputException(&quot;Value must be greater than 0!&quot;);</span>
+        }
+<span class="fc" id="L20">        String key = &quot;square_&quot; + length;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (cache.containsKey(key)) {</span>
+<span class="fc" id="L22">            return (Square) cache.get(key);</span>
+        }
+<span class="fc" id="L24">        Square square = new Square(length);</span>
+<span class="fc" id="L25">        cache.put(key, square);</span>
+<span class="fc" id="L26">        return square;</span>
+    }
+
+    public Circle createCircle(double radius) {
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (radius &lt;= 0) {</span>
+<span class="nc" id="L31">            throw new InvalidInputException(&quot;Value must be greater than 0!&quot;);</span>
+        }
+<span class="fc" id="L33">        String key = &quot;circle_&quot; + radius;</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (cache.containsKey(key)) {</span>
+<span class="nc" id="L35">            return (Circle) cache.get(key);</span>
+        }
+<span class="fc" id="L37">        Circle circle = new Circle(radius);</span>
+<span class="fc" id="L38">        cache.put(key, circle);</span>
+<span class="fc" id="L39">        return circle;</span>
+    }
+
+    public Rectangle createRectangle(double width, double height) {
+<span class="pc bpc" id="L43" title="2 of 4 branches missed.">        if (width &lt;= 0 || height &lt;= 0) {</span>
+<span class="nc" id="L44">            throw new InvalidInputException(&quot;Both values must be greater than 0!&quot;);</span>
+        }
+<span class="fc" id="L46">        String key = &quot;rectangle_&quot; + width + &quot;_&quot; + height;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (cache.containsKey(key)) {</span>
+<span class="nc" id="L48">            return (Rectangle) cache.get(key);</span>
+        }
+<span class="fc" id="L50">        Shape rectangle = new Rectangle(width, height);</span>
+<span class="fc" id="L51">        cache.put(key, rectangle);</span>
+<span class="fc" id="L52">        return (Rectangle) rectangle;</span>
+    }
+
+    public void clearCache() {
+<span class="fc" id="L56">        cache.clear();</span>
+<span class="fc" id="L57">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
